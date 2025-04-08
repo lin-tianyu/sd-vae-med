@@ -1,5 +1,6 @@
 # Exploring SD's VAE for Medical Images
 > This repo is for CSSR Spring 2025 group project. 
+>
 > See the original latent-diffusion README at [README-ldm.md](README-ldm.md)
 
 <!-- **Tianyu Lin** (tlin67), **Chengjie Lin** (clin153), **Tianyou Wang** (twang194), **Yetao He** (yhe121) -->
@@ -56,6 +57,7 @@ The first stage models can then be found in `models/first_stage_models/<model_sp
 ## Data preparation
 > [!IMPORTANT]  
 > TODO: organizing datasets-related information, including links, how to download, preprocess (if needed), etc. (Store under: `sd-vae-med/data`)
+>
 > TODO: implement the dataloader for each dataset. (Place under: `sd-vae-med/ldm/data/`)
 
 
@@ -66,6 +68,7 @@ Logs and checkpoints for trained models are saved to `logs/<START_DATE_AND_TIME>
 ### Inference
 > [!IMPORTANT]  
 > TODO: Build a simple inference script.
+>
 > TODO: Do we have to implement two versions for 2D and 3D?
 
 ### Training (KL-VAE)
