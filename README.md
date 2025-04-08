@@ -17,9 +17,9 @@
   <br />
 </p>
 
-<p align="center">
+<!-- <p align="center">
 <img src=assets/modelfigure.png />
-</p>
+</p> -->
 
 <!-- ## News
 
