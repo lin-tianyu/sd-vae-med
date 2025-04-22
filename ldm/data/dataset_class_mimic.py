@@ -9,12 +9,14 @@ class MIMICCSVImageDataset(Dataset):
     def __init__(self,
                  csv_path,
                  data_root,
-                 size=128,
+                 size=None,
                  interpolation="bicubic",
-                 flip_p=0.0  # 通常测试时不做翻转
-                 ):
-        self.df = pd.read_csv(csv_path)
-        self.data_root = data_root
+                 flip_p=0.0):
+        df = pd.read_csv(csv_path)
+        df["file_path_"] = df["img_path"].apply(lambda x: os.path.join(data_root, x.split(";")[0]))
+        self.labels = df.to_dict(orient="list")
+        self._length = len(df)
+
         self.size = size
         self.interpolation = {
             "bilinear": Image.BILINEAR,
@@ -24,32 +26,26 @@ class MIMICCSVImageDataset(Dataset):
         self.flip = transforms.RandomHorizontalFlip(p=flip_p)
 
     def __len__(self):
-        return len(self.df)
+        return self._length
 
-    def __getitem__(self, idx):
-        row = self.df.iloc[idx]
-        img_path = row["img_path"].split(";")[0]  # 只用第一张图
-        img_path = os.path.join(self.data_root, img_path)
-        image = Image.open(img_path).convert("L")
+    def __getitem__(self, i):
+        example = dict((k, self.labels[k][i]) for k in self.labels)
+        image = Image.open(example["file_path_"])
+        if not image.mode == "RGB":
+            image = image.convert("RGB")
 
         img = np.array(image).astype(np.uint8)
-        h, w = img.shape
-        crop = min(h, w)
+        crop = min(img.shape[0], img.shape[1])
+        h, w = img.shape[:2]
         img = img[(h - crop) // 2:(h + crop) // 2,
                   (w - crop) // 2:(w + crop) // 2]
 
         image = Image.fromarray(img)
         if self.size is not None:
             image = image.resize((self.size, self.size), resample=self.interpolation)
+
         image = self.flip(image)
+        image = np.array(image).astype(np.uint8)
+        example["image"] = (image / 127.5 - 1.0).astype(np.float32)
 
-        image = np.array(image).astype(np.float32)
-        image = (image / 127.5) - 1.0
-        image = np.expand_dims(image, axis=0)
-
-        return {
-            "image": image,
-            "img_path": row["img_path"],
-            "study_id": row["study_id"]
-        }
-
+        return example
