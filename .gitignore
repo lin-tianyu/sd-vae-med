@@ -1,2 +1,4 @@
 models/*/*/model.ckpt
 models/*/*/model.zip
+latent_diffusion.egg-info/
+data/*
