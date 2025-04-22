@@ -81,9 +81,16 @@ Logs and checkpoints for trained models are saved to `logs/<START_DATE_AND_TIME>
 
 ### Inference
 > [!IMPORTANT]  
-> TODO: Build a simple inference script.
->
 > TODO: Do we have to implement two versions for 2D and 3D?
+
+Take CVC-ClinicDB as an example, run
+```bash
+CUDA_VISIBLE_DEVICES=0 \
+    python -u scripts/evalVAE.py \
+    --dataset cvc \
+    --vae_name kl-f8
+```
+where `dataset` is the dataset name defined in `evalVAE.py`, `vae_name` "kl-f8" denotes the model is a KL-VAE with a downsampling rate of 8.
 
 ### Training (KL-VAE)
 
