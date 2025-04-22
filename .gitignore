@@ -2,7 +2,6 @@ models/*/*/model.ckpt
 models/*/*/model.zip
 latent_diffusion.egg-info/
 data/*
-outputs/*
 ldm/__pycache__/*
 ldm/*/__pycache__/*
 ldm/*/*/__pycache__/*
