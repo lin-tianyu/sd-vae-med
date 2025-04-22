@@ -20,6 +20,9 @@ dependencies:
     - test-tube>=0.7.5
     - streamlit>=0.73.1
     - einops==0.3.0
+    - nibabel==5.2.1
+    - h5py==3.11.0
+    - torchmetrics==0.4.1
     - torch-fidelity==0.3.0
     - transformers==4.3.1
     - -e git+https://github.com/CompVis/taming-transformers.git@master#egg=taming-transformers
