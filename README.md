@@ -61,6 +61,19 @@ The first stage models can then be found in `models/first_stage_models/<model_sp
 >
 > TODO: implement the dataloader for each dataset. (Place under: `sd-vae-med/ldm/data/`)
 
+| Dataset        | URL                                                                                           | 
+|----------------|-----------------------------------------------------------------------------------------------|
+| `BTCV`         | [This URL](https://www.synapse.org/#!Synapse:syn3193805/wiki/217752), <br>download the `Abdomen/RawData.zip`. (login needed) | 
+| `STS-3D`       | [This URL](https://toothfairychallenges.github.io/), <br>download the `labelled.zip`.                             
+| `REFUGE2`      | [This URL](https://www.kaggle.com/datasets/victorlemosml/refuge2)                                                           | 
+| `CVC-ClinicDB` | [This URL](https://www.kaggle.com/datasets/balraj98/cvcclinicdb)                                          | 
+| `Kvasir-SEG`   | [This URL](https://datasets.simula.no/kvasir-seg/)                                                        | 
+|`MIMIC`||
+|`BUSI`||
+|`OCT`||
+
+
+
 
 ## Model Inference and Finetuning
 
