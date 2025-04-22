@@ -68,7 +68,7 @@ The first stage models can then be found in `models/first_stage_models/<model_sp
 | `REFUGE2`      | [This URL](https://www.kaggle.com/datasets/victorlemosml/refuge2)                                                           | 
 | `CVC-ClinicDB` | [This URL](https://www.kaggle.com/datasets/balraj98/cvcclinicdb)                                          | 
 | `Kvasir-SEG`   | [This URL](https://datasets.simula.no/kvasir-seg/)                                                        | 
-|`MIMIC`||
+|`MIMIC`         | [This URL](https://physionet.org/content/mimic-cxr/2.0.0/)                                                 |
 |`BUSI`||
 |`OCT`||
 
