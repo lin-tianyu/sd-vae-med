@@ -48,10 +48,24 @@ class OCT2017Base(Dataset):
         example = {"image": im_norm}
         return example
 
+class OCT2017Train(OCT2017Base):
+    def __init__(self, **kwargs):
+        super().__init__(dataset_path="..\\..\\data\\OCT2017", mode="train", **kwargs)
+
+
+class OCT2017Validation(OCT2017Base):
+    def __init__(self, **kwargs):
+        super().__init__(dataset_path="..\\..\\data\\OCT2017", mode="val", **kwargs)
+
+
+class OCT2017Test(OCT2017Base):
+    def __init__(self, **kwargs):
+        super().__init__(dataset_path="..\\..\\data\\OCT2017", mode="test", **kwargs)
+
 # demo for loading data
 if __name__ == "__main__":
     # demo for using. Define the dataset_path (to OCT2017), and the normalized size, at least.
-    train_ds = OCT2017Base(dataset_path="..\\..\\data\\OCT2017", size_norm=[228, 228])
+    train_ds = OCT2017Train(size_norm=[256, 256])
     train_dl = DataLoader(train_ds, batch_size=4, shuffle=True)
     for i, ex in enumerate(train_dl):
         input = ex["image"]
