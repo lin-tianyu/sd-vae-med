@@ -23,6 +23,7 @@ from ldm.data.refuge2 import REFUGE2Validation, REFUGE2Test
 from ldm.data.sts3d import STS3DValidation, STS3DTest
 from ldm.data.cvc import CVCValidation, CVCTest
 from ldm.data.kseg import KSEGValidation, KSEGTest
+from ldm.data.dataset_class_mimic import MIMICCSVImageDatasetTest
 
 from ldm.recon_metrics import get_mse, get_ssim, get_ssim_3d, get_psnr, get_psnr_3d, cast_to_image
 
@@ -190,6 +191,13 @@ def main():
         opt.ckpt = f"logs/{run}/checkpoints/model.ckpt"
         opt.outdir = "outputs/slice2seg-samples-cvc"
         dataset = KSEGTest()
+    elif opt.dataset == "mimic":
+        run = "the name of your experiment"
+        print("Evaluate on mimic dataset in binary segmentation manner.")
+        opt.config = f"models/first_stage_models/{opt.vae_name}/config.yaml"
+        opt.ckpt = f"models/first_stage_models/{opt.vae_name}/model.ckpt"
+        opt.outdir = f"outputs/pt-{opt.vae_name}"
+        dataset = MIMICCSVImageDatasetTest()
     else:
         raise NotImplementedError(f"Not implement for dataset {opt.dataset}")
 

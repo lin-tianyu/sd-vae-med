@@ -49,3 +49,8 @@ class MIMICCSVImageDataset(Dataset):
         example["image"] = (image / 127.5 - 1.0).astype(np.float32)
 
         return example
+
+
+class MIMICCSVImageDatasetTest(MIMICCSVImageDataset):
+    def __init__(self, **kwargs):
+        super().__init__(csv_path = './data/images/mimic-cxr-2.0.0-test_SN.csv', data_root='./data/images', **kwargs)
