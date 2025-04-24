@@ -29,8 +29,13 @@ def get_ssim(img1, img2, border=0):
     if torch.is_tensor(img2):
         img2 = img2.cpu().detach().numpy()
 
-    img1 = img_as_ubyte(img1)
-    img2 = img_as_ubyte(img2)
+    try:
+        img1 = img_as_ubyte(img1.clip(-1, 1))
+        img2 = img_as_ubyte(img2.clip(-1, 1))
+    except ValueError as e:
+        print(img1.min(), img1.max())
+        print(img2.min(), img2.max())
+        raise e
 
     if not img1.shape == img2.shape:
         raise ValueError('Input images must have the same dimensions.')
