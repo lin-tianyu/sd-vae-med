@@ -56,6 +56,10 @@ class BUSIDataset(Dataset):
 
         image = self.flip(image)
         image = np.array(image).astype(np.uint8)
+
+        if image.ndim == 2:
+            image = np.repeat(image[:, :, None], 3, axis=2)
+            
         example["image"] = (image / 127.5 - 1.0).astype(np.float32)
 
         return example
