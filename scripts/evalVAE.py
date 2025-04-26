@@ -23,13 +23,15 @@ from ldm.data.refuge2 import REFUGE2Validation, REFUGE2Test
 from ldm.data.sts3d import STS3DValidation, STS3DTest
 from ldm.data.cvc import CVCValidation, CVCTest
 from ldm.data.kseg import KSEGValidation, KSEGTest
+from ldm.data.busi import BUSIDataset
 
 from ldm.recon_metrics import get_mse, get_ssim, get_ssim_3d, get_psnr, get_psnr_3d, cast_to_image
 
 from scipy.ndimage import zoom
 import pandas as pd
 import matplotlib.pyplot as plt
-
+sys.path.append(os.path.abspath("taming-transformers"))
+from taming.modules.vqvae.quantize import VectorQuantizer2 as VectorQuantizer
 # from diffusers.pipelines.stable_diffusion.safety_checker import StableDiffusionSafetyChecker
 # from transformers import AutoFeatureExtractor
 
@@ -79,7 +81,7 @@ def iou_score(pred, targs):
 
 
 def load_model_from_config(config, ckpt):
-    pl_sd = torch.load(ckpt, map_location="cpu")
+    pl_sd = torch.load(ckpt, map_location="cpu", weights_only=False)
     if "global_step" in pl_sd:
         print(f"Global Step: {pl_sd['global_step']}")
     sd = pl_sd["state_dict"]
@@ -190,6 +192,15 @@ def main():
         opt.ckpt = f"logs/{run}/checkpoints/model.ckpt"
         opt.outdir = "outputs/slice2seg-samples-cvc"
         dataset = KSEGTest()
+    elif opt.dataset == "busi":
+        run = "the name of your experiment" 
+        print("Evaluate on BUSI dataset.")
+        opt.config = f"models/first_stage_models/{opt.vae_name}/config.yaml"
+        opt.ckpt = f"models/first_stage_models/{opt.vae_name}/model.ckpt"
+        opt.outdir = f"outputs/pt-{opt.vae_name}-busi"
+        # Change this path
+        dataset = BUSIDataset(
+            data_root="D:/JHU/jhu_labs/25spring/CSSR/project/Dataset_BUSI/Dataset_BUSI_with_GT", size = 256)
     else:
         raise NotImplementedError(f"Not implement for dataset {opt.dataset}")
 
@@ -212,7 +223,6 @@ def main():
     
     outpath = opt.outdir
     os.makedirs(outpath, exist_ok=True)
-
     
 
     pbar = tqdm(dataloader, desc="Infering")
@@ -223,8 +233,11 @@ def main():
         recon = model(image)[0]                                     # NOTE: (1, 3, H, W), around (-1, 1), torch.Tensor
         recon = torch.clamp(recon, min=-1, max=1)                   # NOTE: (1, 3, H, W), [-1, 1], torch.Tensor
 
-        image2show2D = cast_to_image(image[0])   # NOTE: (3, H, W), [0, 1], numpy.ndarray
-        recon2show2D = cast_to_image(recon[0])   # NOTE: (3, H, W), [0, 1], numpy.ndarray
+        # image2show2D = cast_to_image(image[0])   # NOTE: (3, H, W), [0, 1], numpy.ndarray
+        # recon2show2D = cast_to_image(recon[0])   # NOTE: (3, H, W), [0, 1], numpy.ndarray
+        
+        image2show2D = cast_to_image(image[0], normalize = False)   # NOTE: (3, H, W), [0, 1], numpy.ndarray
+        recon2show2D = cast_to_image(recon[0], normalize = False)   # NOTE: (3, H, W), [0, 1], numpy.ndarray
 
         # plt.imshow(np.concatenate([image2show.permute(1, 2, 0), recon2show.permute(1, 2, 0)], axis=1), vmin=0, vmax=1)
         # plt.axis('off')
