@@ -155,26 +155,35 @@ def main():
     if opt.dataset == "synapse-b":
         run = "the name of your experiment"      # for example: 2024-02-13T17-09-00_binary
         print("Evaluate on synapse dataset in binary segmentation manner.")
-        opt.config = glob.glob(os.path.join("logs", run, "configs", "*-project.yaml"))[0]
-        opt.ckpt = f"logs/{run}/checkpoints/last.ckpt"      # name of the trained model
-        opt.outdir = "outputs/slice2seg-samples-synapse-b"
-        dataset = SynapseValidationVolume(num_classes=2)
+        # opt.config = glob.glob(os.path.join("logs", run, "configs", "*-project.yaml"))[0]
+        # opt.ckpt = f"logs/{run}/checkpoints/last.ckpt"      # name of the trained model
+        # opt.outdir = "outputs/slice2seg-samples-synapse-b"
+        opt.config = f"models/first_stage_models/{opt.vae_name}/config.yaml"
+        opt.ckpt = f"models/first_stage_models/{opt.vae_name}/model.ckpt"
+        opt.outdir = f"outputs/pt-{opt.vae_name}"
+        dataset = SynapseValidation(num_classes=2)
     elif opt.dataset == "refuge2-b":
         run = "the name of your experiment" 
         print("Evaluate on refuge2 dataset in binary segmentation manner.")
-        opt.config = glob.glob(os.path.join("logs", run, "configs", "*-project.yaml"))[0]
-        # opt.ckpt = "models/ldm/synapse_binary/model.ckpt"
-        opt.ckpt = f"logs/{run}/checkpoints/model.ckpt"
-        opt.outdir = "outputs/slice2seg-samples-refuge2-b"
-        dataset = REFUGE2Test()
+        # opt.config = glob.glob(os.path.join("logs", run, "configs", "*-project.yaml"))[0]
+        # # opt.ckpt = "models/ldm/synapse_binary/model.ckpt"
+        # opt.ckpt = f"logs/{run}/checkpoints/model.ckpt"
+        # opt.outdir = "outputs/slice2seg-samples-refuge2-b"
+        opt.config = f"models/first_stage_models/{opt.vae_name}/config.yaml"
+        opt.ckpt = f"models/first_stage_models/{opt.vae_name}/model.ckpt"
+        opt.outdir = f"outputs/pt-{opt.vae_name}"
+        dataset = REFUGE2Validation()
     elif opt.dataset == "sts-3d": 
         run = "the name of your experiment" 
         print("Evaluate on sts-3d dataset in binary segmentation manner.")
-        opt.config = glob.glob(os.path.join("logs", run, "configs", "*-project.yaml"))[0]
-        # opt.ckpt = "models/ldm/synapse_binary/model.ckpt"
-        opt.ckpt = f"logs/{run}/checkpoints/epoch=199-step=124999.ckpt"
-        opt.outdir = "outputs/slice2seg-samples-sts-3d"
-        dataset = STS3DTest()
+        # opt.config = glob.glob(os.path.join("logs", run, "configs", "*-project.yaml"))[0]
+        # # opt.ckpt = "models/ldm/synapse_binary/model.ckpt"
+        # opt.ckpt = f"logs/{run}/checkpoints/epoch=199-step=124999.ckpt"
+        # opt.outdir = "outputs/slice2seg-samples-sts-3d"
+        opt.config = f"models/first_stage_models/{opt.vae_name}/config.yaml"
+        opt.ckpt = f"models/first_stage_models/{opt.vae_name}/model.ckpt"
+        opt.outdir = f"outputs/pt-{opt.vae_name}"
+        dataset = STS3DValidation()
     elif opt.dataset == "cvc":
         run = "the name of your experiment" 
         print("Evaluate on cvc dataset in binary segmentation manner.")

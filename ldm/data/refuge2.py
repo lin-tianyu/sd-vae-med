@@ -68,11 +68,11 @@ class REFUGE2Base(Dataset):
         return self._length
 
     def _parse_data_list(self):
-        all_imgs = glob.glob(os.path.join(self.data_root, "*.png"))
-        val_imgs = glob.glob(os.path.join(self.data_root, "V*.png"))
-        test_imgs = glob.glob(os.path.join(self.data_root, "T*.png"))
+        all_imgs = glob.glob(os.path.join(self.data_root, "*.jpg"))
+        val_imgs = glob.glob(os.path.join(self.data_root, "V*.jpg"))
+        test_imgs = glob.glob(os.path.join(self.data_root, "T*.jpg"))
         train_imgs = list(set(all_imgs) - set(test_imgs))  # - set(val_imgs)
-        assert len(train_imgs) == 800 and len(test_imgs) == 400
+        assert len(train_imgs) == 800 and len(test_imgs) == 400, (len(train_imgs), len(test_imgs))
 
         if self.mode == "train":
             return train_imgs
@@ -99,7 +99,7 @@ class REFUGE2Train(REFUGE2Base):
 
 class REFUGE2Validation(REFUGE2Base):
     def __init__(self, **kwargs):
-        super().__init__(data_root="data/refuge2/Train_crop/images", mode="test", **kwargs)
+        super().__init__(data_root="data/refuge2/merge", mode="test", **kwargs)
 
 
 class REFUGE2Test(REFUGE2Base):
