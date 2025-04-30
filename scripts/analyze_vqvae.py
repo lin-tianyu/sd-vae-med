@@ -14,7 +14,7 @@ sns.set_context("paper", font_scale=1.2)
 
 # Collect VQ models data - only include standard models, not the variants
 vq_models = ['pt-vq-f4', 'pt-vq-f8', 'pt-vq-f16']  # Removed pt-vq-f4-noattn and pt-vq-f8-n256
-datasets = ['BUSI_2D', 'CVC_2D', 'REFUGE2-B_2D', 'SYNAPSE-B_2D', 'STS-3D_2D']
+datasets = ['BUSI_2D', 'CVC_2D', 'OCT2017_2D', 'REFUGE2-B_2D', 'SYNAPSE-B_2D', 'STS-3D_2D']
 
 # Extract the downsampling factor numbers for sorting
 factors = [int(re.search(r'f(\d+)', model).group(1)) for model in vq_models]
@@ -70,9 +70,9 @@ metric_labels = ['Mean Squared Error (MSE)', 'Structural Similarity (SSIM)', 'Pe
 
 # Scientific publication color palette - colorblind friendly
 # Using a color palette inspired by Nature, Science, etc.
-colors = ['#0173B2', '#DE8F05', '#029E73', '#D55E00', '#CC78BC']
-markers = ['o', 's', '^', 'D', 'p']
-linestyles = ['-', '--', ':', '-.', '-']
+colors = ['#0173B2', '#DE8F05', '#029E73', '#D55E00', '#CC78BC', '#661D98']
+markers = ['o', 's', '^', 'D', 'p', '*']
+linestyles = ['-', '--', ':', '-.', '-', '--']
 
 # For each metric, create a line plot
 for i, (metric, metric_label) in enumerate(zip(metrics, metric_labels)):

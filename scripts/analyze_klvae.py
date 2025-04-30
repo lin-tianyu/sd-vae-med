@@ -18,7 +18,7 @@ factors = [int(model.split('-f')[1]) for model in kl_models]
 # Create a mapping of model to factor for later use
 model_to_factor = {model: factor for model, factor in zip(kl_models, factors)}
 
-datasets = ['BUSI_2D', 'CVC_2D', 'REFUGE2-B_2D', 'SYNAPSE-B_2D', 'STS-3D_2D']
+datasets = ['BUSI_2D', 'CVC_2D', 'OCT2017_2D','REFUGE2-B_2D', 'SYNAPSE-B_2D', 'STS-3D_2D']
 
 # Dictionary to store the results
 results_kl = {}
@@ -69,9 +69,9 @@ metric_labels = ['Mean Squared Error (MSE)', 'Structural Similarity (SSIM)', 'Pe
 
 # Scientific publication color palette - colorblind friendly
 # Using a color palette inspired by Nature, Science, etc.
-colors = ['#0173B2', '#DE8F05', '#029E73', '#D55E00', '#CC78BC']
-markers = ['o', 's', '^', 'D', 'p']
-linestyles = ['-', '--', ':', '-.', '-']
+colors = ['#0173B2', '#DE8F05', '#029E73', '#D55E00', '#CC78BC', '#661D98']
+markers = ['o', 's', '^', 'D', 'p', '*']
+linestyles = ['-', '--', ':', '-.', '-', '--']
 
 # For each metric, create a line plot
 for i, (metric, metric_label) in enumerate(zip(metrics, metric_labels)):

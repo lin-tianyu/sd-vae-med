@@ -14,7 +14,7 @@ sns.set_context("paper", font_scale=1.2)
 # Models to compare
 model1 = 'pt-vq-f8'
 model2 = 'pt-vq-f8-n256'
-datasets = ['BUSI_2D', 'CVC_2D', 'REFUGE2-B_2D', 'SYNAPSE-B_2D', 'STS-3D_2D']
+datasets = ['BUSI_2D', 'CVC_2D', 'OCT2017_2D', 'REFUGE2-B_2D', 'SYNAPSE-B_2D', 'STS-3D_2D']
 
 # Dictionary to store the results
 all_results = {model1: {}, model2: {}}
