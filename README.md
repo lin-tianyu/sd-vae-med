@@ -3,7 +3,7 @@
 
 <!-- **Tianyu Lin** (tlin67), **Chengjie Lin** (clin153), **Tianyou Wang** (twang194), **Yetao He** (yhe121) -->
 
-<p align="center">
+<!-- <p align="center">
   <a href="https://lin-tianyu.github.io"><img alt="Static Badge" src="https://img.shields.io/badge/Tianyu_Lin-_-white?style=social"></a>
   <a href=""><img alt="Static Badge" src="https://img.shields.io/badge/Chengjie_Lin-_-white?style=social"></a>
   <a href=""><img alt="Static Badge" src="https://img.shields.io/badge/Yetao_He-_-white?style=social"></a>
@@ -11,9 +11,10 @@
   <!-- <a href="https://lin-tianyu.github.io"><img alt="Static Badge" src="https://img.shields.io/github/stars/lin-tianyu?label=Tianyu%20Lin"></a>
   <a href="https://jerry-lcj.github.io"><img alt="Static Badge" src="https://img.shields.io/github/stars/jerry-lcj?label=Chengjie%20Lin"></a>
   <a href="https://YetiHe.github.io"><img alt="Static Badge" src="https://img.shields.io/github/stars/YetiHe?label=YeTao%20He"></a>
-  <a href="https://qianlangu.github.io"><img alt="Static Badge" src="https://img.shields.io/github/stars/qianlangu?label=Tianyou%20Wang"></a> -->
+  <a href="https://qianlangu.github.io"><img alt="Static Badge" src="https://img.shields.io/github/stars/qianlangu?label=Tianyou%20Wang"></a> 
   <br />
-</p>
+</p> -->
+
 
 <!-- <p align="center">
 <img src=assets/modelfigure.png />
