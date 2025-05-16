@@ -1,6 +1,4 @@
 # Exploring SD's VAE for Medical Images
-> This repo is for CSSR Spring 2025 group project. 
->
 > See the original latent-diffusion README at [README-ldm.md](README-ldm.md)
 
 <!-- **Tianyu Lin** (tlin67), **Chengjie Lin** (clin153), **Tianyou Wang** (twang194), **Yetao He** (yhe121) -->
